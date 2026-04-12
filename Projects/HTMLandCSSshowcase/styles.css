@@ -1,0 +1,6 @@
+h2 { text-align:center }
+a:hover { text-decoration:none ; color:OrangeRed; }
+.dont { color:hsl(42, 100%, 55%); font-size:150%; font-style:bold }
+img { width:300px }
+p { text-indent:1em }
+#container { margin-left:20px; margin-right:20px }
