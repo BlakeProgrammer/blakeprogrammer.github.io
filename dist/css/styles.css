@@ -1,4 +1,109 @@
-.title {
-    font-size: 2em;
-    color: purple
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+body {
+  background-color: #ff69b4;
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 100vh;
+  padding: 20px;
+}
+ 
+/* ── Navbar ── */
+.navbar {
+  display: flex;
+  align-items: stretch;
+  border: 3px solid #111;
+  background-color: #fff;
+  margin-bottom: 20px;
+  height: 56px;
+}
+ 
+.navbar__name {
+  background-color: #111;
+  color: #fff;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+ 
+.navbar__spacer {
+  flex: 1;
+  background-color: #fff;
+}
+ 
+.navbar__menu {
+  border: none;
+  border-left: 3px solid #111;
+  background-color: #fff;
+  font-size: 1.4rem;
+  width: 56px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+ 
+.navbar__menu:hover {
+  background-color: #f0f0f0;
+}
+ 
+/* ── Main card ── */
+.main {
+  display: flex;
+  justify-content: center;
+}
+ 
+.card {
+  background-color: #f5f5f5;
+  border: 3px solid #111;
+  padding: 48px 40px 48px 40px;
+  width: 100%;
+  max-width: 900px;
+}
+ 
+.card__heading {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 24px;
+}
+ 
+.wave {
+  display: inline-block;
+}
+ 
+.card__text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  color: #111;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+ 
+.card__button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 8px 16px;
+  border: 2px solid #111;
+  background-color: #fff;
+  color: #111;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+ 
+.card__button:hover {
+  background-color: #111;
+  color: #fff;
 }
