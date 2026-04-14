@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+	<title>Price Landscaper</title>
+	<link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+ 
+  <header class="navbar__container">
+    <div class="navbar">
+    <div class="navbar__name">Benjamin Blake Smith</div>
+    <div class="navbar__spacer"></div>
+    <button class="navbar__menu" aria-label="Menu">&#9776;</button>
+    </div>
+  </header>
+ 
+  <main>
+    <section class="card__container">
+      <div class="card">
+        <h1 class="card__heading">Price Landscaper</h1>
+        <p class="card__text">Price Landscaper began as a project for my software engineering class, but it was driven by a simple goal, to help first-time homebuyers get an intuitive feel for the housing market in their region. 
+        <p class="card__text">Traditional real estate platforms like Redfin and Zillow are excellent tools for searching individual listings, but they don't communicate the shape of a market. I wanted to build something that would let a homebuyer look at an entire state and immediately understand where prices were high, where they were affordable, and how neighborhoods compared to each other geographically.</p>
+        <p class="card__text">So meet... <b>Price Landscaper!</b></p>
+        <a href="./showcase.html">Interactive Price Landscaper Demo</a>
+        <img src="../../images/price-landscaper/Demo.png" alt="Price Landscaper Demo" class="card__image">
+        <p class="card__text">The result is a tool that starts with the big picture and lets you drill down from a bird's eye view of an entire state's price landscape, through neighborhood level clusters, all the way to individual listings with photos, prices, and square footage, each linking directly to their Redfin page.</p>
+        <h1 class="card__heading">Technologies Used</h1>
+        <h2 class="card__subheading">Python</h2>
+        <p class="card__text"><b>Python</b> serves as the backbone of Price Landscaper's data pipeline. It orchestrates the entire scraping process from start to finish, handling everything from HTTP requests to statistical filtering of the final dataset, using a multitude of <b>modules</b> to do so.</p></li>
+        <ul>
+        <li><p class="card__text"><b>Requests</b> is a Python library used to make HTTP calls to Redfin's website, replicating the same network requests a browser would make when visiting a listing page. It fetches the raw HTML content that the scraper then processes.</p></li>
+        <li><p class="card__text"><b>BeautifulSoup</b> is a Python HTML parsing library that navigates the raw HTML fetched by Requests and extracts the structured data embedded within it. Price Landscaper uses it specifically to locate and extract application/ld+json script tags, which contain Redfin's structured listing data.</p></li>
+        <li><p class="card__text"><b>NumPy</b> is a Python numerical computing library used in Price Landscaper's data cleaning step. It calculates the mean and standard deviation of listing prices across the dataset and removes statistical outliers, specifically any listings whose prices fall outside two standard deviations from the mean, ensuring the visualization isn't distorted by anomalous data points.</p></li>
+        <li><p class="card__text"><b>ThreadPoolExecutor</b> is part of Python's standard library and enables parallel execution of tasks. Price Landscaper uses it to scrape multiple individual listing pages simultaneously rather than one at a time, significantly reducing the total time required to build the dataset.</p></li>
+        </ul>
+        <h2 class="card__subheading">JSON</h2> 
+        <p class="card__text">Since Redfin embeds listing data including price, coordinates, square footage, and images in this format on every listing page, Price Landscaper's scraper leverages its JSON as a data source without requiring a traditional API.     
+        <p class="card__text"><b>JSON</b> serves as Price Landscaper's data storage format. Rather than using a database or backend server, the entire dataset of scraped listings is stored as a single flat JSON file that the frontend loads directly. This keeps the architecture simple and means Price Landscaper can be deployed as a fully static website with no server infrastructure required.<br>(As you can experience above!)</p>
+        <h2 class="card__subheading">HTML, CSS, and JavaScript</h2>
+        <p class="card__text"><b>HTML, CSS, and JavaScript</b> form the <b>frontend</b> of Price Landscaper. The entire interface is built in vanilla JavaScript without any frontend framework, keeping the codebase simple and deployable anywhere without a build process. JavaScript's native Fetch API loads the listings dataset asynchronously, and standard DOM manipulation drives the sidebar listing panel and user interactions.</p>
+        <h2 class="card__subheading">deck.gl</h2>
+        <p class="card__text"><b>deck.gl</b> is an open source WebGL-powered geospatial visualization framework originally developed by Uber's engineering team. Rather than using the browser's standard 2D drawing APIs, deck.gl communicates directly with the computer's GPU through WebGL, enabling smooth rendering of thousands of 3D geographic objects in the browser. Price Landscaper uses two deck.gl layers — the HexagonLayer, which aggregates listings into a hexagonal grid and renders each hexagon as a 3D column whose height and color represent the average price of listings in that area, and the ScatterplotLayer, which renders individual listing coordinates as color-coded dots when the user zooms in. The crossfade transition between these two layers as the user zooms is driven by deck.gl's onViewStateChange event, which fires continuously as the camera moves.</p>
+        <h2 class="card__subheading">MapLibre GL</h2>
+        <p class="card__text"><b>MapLibre GL</b> is an open source map rendering library that provides the geographic base map underneath the deck.gl visualization. It renders the street map, city labels, and terrain context that gives the price columns their geographic meaning. Price Landscaper uses CartoDB's free dark basemap style, which provides a visually clean dark background that makes the colorful price columns stand out clearly.</p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
