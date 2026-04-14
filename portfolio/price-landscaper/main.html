@@ -3,14 +3,27 @@
 <head> 
 	<title>Price Landscaper</title>
 	<link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <script src="../../js/nav.js" defer></script>
 </head>
 <body>
  
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <nav class="nav-overlay__links">
+      <a href="../../index.html" class="nav-overlay__link" data-close>Home</a>
+      <a href="../../index.html#about" class="nav-overlay__link" data-close>About</a>
+      <a href="../../index.html#portfolio" class="nav-overlay__link" data-close>Portfolio</a>
+      <a href="../../index.html#community-involvement" class="nav-overlay__link" data-close>Impact & Honors</a>
+      <a href="../../index.html#contact" class="nav-overlay__link" data-close>Contact</a>
+    </nav>
+  </div>
+
   <header class="navbar__container">
     <div class="navbar">
-    <div class="navbar__name">Benjamin Blake Smith</div>
+    <div class="navbar__name"><a href="../../index.html">Benjamin Blake Smith</a></div>
     <div class="navbar__spacer"></div>
-    <button class="navbar__menu" aria-label="Menu">&#9776;</button>
+    <button class="navbar__menu" id="menuBtn" aria-label="Menu">&#9776;</button>
     </div>
   </header>
  
@@ -24,6 +37,7 @@
         <a href="./showcase.html">Interactive Price Landscaper Demo</a>
         <img src="../../images/price-landscaper/Demo.png" alt="Price Landscaper Demo" class="card__image">
         <p class="card__text">The result is a tool that starts with the big picture and lets you drill down from a bird's eye view of an entire state's price landscape, through neighborhood level clusters, all the way to individual listings with photos, prices, and square footage, each linking directly to their Redfin page.</p>
+        <p class="card__text">View the source code on <a href="https://github.com/BlakeProgrammer/PriceLandscaper">GitHub</a>.</p>
         <h1 class="card__heading">Technologies Used</h1>
         <h2 class="card__subheading">Python</h2>
         <p class="card__text"><b>Python</b> serves as the backbone of Price Landscaper's data pipeline. It orchestrates the entire scraping process from start to finish, handling everything from HTTP requests to statistical filtering of the final dataset, using a multitude of <b>modules</b> to do so.</p></li>
@@ -45,6 +59,15 @@
       </div>
     </section>
   </main>
-
+  <footer>
+    <div class="card">
+      <h1 class="card__heading">Get in touch</h1>
+      <p class="card__text">Like what you've seen? If you would like to collaborate or learn more about me, feel free to reach out!<br>Drop me an email at <u>benjaminbsmithbusiness@gmail.com</u></p>
+      <div class="contact__container">
+        <a href="https://www.instagram.com/blakeprobably/" target="_blank"><img src="../../images/instagram-logo-transparent.png" alt="Instagram" class="contact__image__instagram" id="float-up"></a>
+        <a href="https://www.linkedin.com/in/blake-programmer/" target="_blank"><img src="../../images/linkedin-icon-transparent.png" alt="LinkedIn" class="contact__image" id="float-up"></a>
+        <a href="https://github.com/BlakeProgrammer" target="_blank"><img src="../../images/github-logo-transparent.png" alt="GitHub" class="contact__image" id="float-up"></a>
+      </div>
+  </footer>
 </body>
 </html>

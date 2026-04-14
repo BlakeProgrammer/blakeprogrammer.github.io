@@ -1,0 +1,73 @@
+/* ── Nav Overlay ── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #fff;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Hidden state */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.nav-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Stagger link entrance */
+.nav-overlay__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-overlay__link {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: #111;
+  text-decoration: none;
+  line-height: 1.1;
+
+  /* Slide-up entrance */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s;
+}
+
+.nav-overlay.is-open .nav-overlay__link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger each link */
+.nav-overlay.is-open .nav-overlay__link:nth-child(1) { transition-delay: 0.05s; }
+.nav-overlay.is-open .nav-overlay__link:nth-child(2) { transition-delay: 0.10s; }
+.nav-overlay.is-open .nav-overlay__link:nth-child(3) { transition-delay: 0.15s; }
+.nav-overlay.is-open .nav-overlay__link:nth-child(4) { transition-delay: 0.20s; }
+.nav-overlay.is-open .nav-overlay__link:nth-child(5) { transition-delay: 0.25s; }
+
+.nav-overlay__link:hover {
+  color: #6991ff;
+}
+
+/* ── Menu button: hamburger → X ── */
+.navbar__menu {
+  position: relative;
+  z-index: 200; /* stays above overlay */
+}
+
+/* When menu is open, invert button colours so it reads on pink */
+.navbar__menu.is-open {
+  background-color: #fff;
+  border: #6991ff 3px solid;
+  color: #111;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
