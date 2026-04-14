@@ -3,37 +3,79 @@
 <head> 
 	<title>Blake Smith's Portfolio</title>
 	<link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/nav.css">
+  <script src="./js/nav.js" defer></script>
 </head>
 <body>
+
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <nav class="nav-overlay__links">
+      <a href="index.html" class="nav-overlay__link" data-close>Home</a>
+      <a href="index.html#about" class="nav-overlay__link" data-close>About</a>
+      <a href="index.html#portfolio" class="nav-overlay__link" data-close>Portfolio</a>
+      <a href="index.html#community-involvement" class="nav-overlay__link" data-close>Impact & Honors</a>
+      <a href="index.html#contact" class="nav-overlay__link" data-close>Contact</a>
+    </nav>
+  </div>
  
   <header class="navbar__container">
     <div class="navbar">
-    <div class="navbar__name">Benjamin Blake Smith</div>
+    <div class="navbar__name"><a href="index.html">Benjamin Blake Smith</a></div>
     <div class="navbar__spacer"></div>
-    <button class="navbar__menu" aria-label="Menu">&#9776;</button>
+    <button class="navbar__menu" id="menuBtn" aria-label="Menu">&#9776;</button>
     </div>
   </header>
  
   <main>
-    <section class="card__container">
-      <div class="card">
-        <h1 class="card__heading">Hi there! <span class="wave">👋</span></h1>
-        <p class="card__text">I'm a freelance web developer based in Nashville, Tennessee, USA.</p>
-        <p class="card__text">I build web apps and python scripts that won't need a rewrite after a few months.</p>
-        <a href="./portfolio/html-and-css-showcase/home-page.html">html and css ability showcase</a>
-        <a href="mailto:blakesmith7504@gmail.com" class="card__button">Hire me!</a>
+    <section class="card__container__split">
+      <div class="card__split" id="about">
+        <h1 class="card__heading">About</h1>
+        <p class="card__text">Hello!</p>
+        <p class="card__text">I go by <b>Blake</b>, and I'm a passionate software developer. My expertise lies in working with Python and JavaScript, but I'm also proficent in C++, Java, and SQL</p>
+        <p class="card__text">I'm a May 2026 graduate of Trevecca Nazarene University,<br>with a <b>Bachelor of Science in Computer Science</b>, and I'm excited to take what I've learned from my classes and my internship experience into the workforce.</p>
+        <p class="card__text">You can find my full resume here: <a href="./documents/Benjamin Smith - Resume.pdf" target="_blank">Resume</a></p>
+      </div>
+      <div class="card__split" id="profile-picture">
+        <div class="image-stack">
+          <img src="./images/blue-gold-geode-texture.jpg" alt="Background" class="image-bg">
+          <img src="./images/blake-headshot-cropped.png" alt="Profile Picture" class="image-fg">
+        </div>
       </div>
     </section>
 
     <section class="card__container">
-      <div class="card">
-        <h1 class="card__heading">Notable Projects</h1>
+      <div class="card" id="portfolio">
+        <h1 class="card__heading">Portfolio</h1>
         <p class="card__text">D&D Session Calendar App</p>
         <p class="card__text"><a href="./portfolio/price-landscaper/main.html">Price Landscaper</a></p>
         <p class="card__text">Airport Visualization</p>
       </div>
     </section>
+
+    <section class="card__container">
+      <div class="card" id="community-involvement">
+        <h1 class="card__heading">Community Involvement</h1>
+        <p class="card__text">Placeholder text</p>
+      </div>
+    </section>
+
+    <section class="card__container">
+      <div class="card" id="academic-achievement">
+        <h1 class="card__heading">Academic Achievements</h1>
+        <p class="card__text">Placeholder text</p>
+      </div>
+    </section>
   </main>
- 
+  <footer>
+    <div class="card" id="contact">
+      <h1 class="card__heading">Get in touch</h1>
+      <p class="card__text">Like what you've seen? If you would like to collaborate or learn more about me, feel free to reach out!<br>Drop me an email at <u>benjaminbsmithbusiness@gmail.com</u></p>
+      <div class="contact__container">
+        <a href="https://www.instagram.com/blakeprobably/" target="_blank"><img src="../../images/instagram-logo-transparent.png" alt="Instagram" class="contact__image__instagram" id="float-up"></a>
+        <a href="https://www.linkedin.com/in/blake-programmer/" target="_blank"><img src="../../images/linkedin-icon-transparent.png" alt="LinkedIn" class="contact__image" id="float-up"></a>
+        <a href="https://github.com/BlakeProgrammer" target="_blank"><img src="../../images/github-logo-transparent.png" alt="GitHub" class="contact__image" id="float-up"></a>
+      </div>
+  </footer>
 </body>
 </html>

@@ -41,6 +41,15 @@ ul {
   font-size: 1.25rem;
   padding: 10px 20px 11px 20px;
 }
+
+.navbar__name a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.navbar__name a:hover {
+  color: #6991ff;
+}
  
 .navbar__spacer {
   flex: 1;
@@ -60,7 +69,7 @@ ul {
   background-color: #f0f0f0;
 }
  
-/* ── Main card ── */
+/* ── Main cards ── */
 main {
   display: grid;
   gap: 20px;
@@ -77,6 +86,62 @@ main {
   padding: 28px 28px 28px 28px;
   width: 100%;
   max-width: 1200px;
+}
+
+/* ── Main cards ── */
+.card__container__split {
+  display: flex;
+  justify-content: center;
+  gap: 0; /* Set to 0 so the black borders touch, or 20px for a gap */
+  width: 100%;
+  max-width: 1200px; /* Matches your navbar */
+  margin: 0 auto;    /* Centers the whole container */
+  border: 3px solid #111;
+}
+
+.card__split {
+  background-color: #f5f5f5;
+  padding: 28px;
+  flex: 1;          /* Forces both sides to be equal width */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure the image doesn't overflow its half of the card */
+.card__image__split {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Optional: remove margin-top from image if you want it aligned to the top */
+#profile-picture {
+  justify-content: center; /* Vertically centers the photo if the text is long */
+  align-items: center;
+  flex: 0.4;
+}
+
+.image-stack {
+  display: grid;
+  place-items: center; /* Centers both items on the X and Y axis */
+  position: relative;
+  width: 100%;
+}
+
+.image-stack img {
+  grid-area: 1 / 1;    /* Forces both images to occupy the exact same grid cell */
+}
+
+.image-bg {
+  width: 100%;         /* The background image fills the card */
+  z-index: 1;          /* Keeps it in the back */
+}
+
+.image-fg {
+  width: 70%;          /* Makes the front image smaller */
+  border: 3px solid #fff; /* Adds a border to the front image */
+  z-index: 2;          /* Sits it on top */
+  border-radius: 50%;
 }
  
 .card__heading {
@@ -127,4 +192,39 @@ main {
 .card__button:hover {
   background-color: #111;
   color: #fff;
+}
+
+/* ── Footer card ── */
+footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.contact__container {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.contact__image {
+  width: 48px;
+  height: 48px;
+  margin-top: 12px;
+  margin-right: 12px;
+}
+
+.contact__image__instagram {
+  width: 44px;
+  height: 44px;
+  margin-top: 14px;
+  margin-right: 12px;
+}
+
+#float-up {
+  transition: background-color 0.2s, transform 0.2s ease;
+}
+#float-up:hover {
+  background-color: #6991ff;
+  transform: translateY(-5px);
 }
