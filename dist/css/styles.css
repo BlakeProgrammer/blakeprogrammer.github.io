@@ -12,14 +12,18 @@ body {
 }
  
 /* ── Navbar ── */
-.navbar {
+.navbar__container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  border: 3px solid #111;
-  background-color: #fff;
   margin-bottom: 20px;
-  height: 56px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 3px solid #111;
+  width: 100%;
   max-width: 1200px;
 }
  
@@ -29,10 +33,7 @@ body {
   font-family: 'Arial Black', Arial, sans-serif;
   font-weight: 900;
   font-size: 1.25rem;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
+  padding: 10px 20px 10px 20px;
 }
  
 .navbar__spacer {
@@ -46,11 +47,6 @@ body {
   background-color: #fff;
   font-size: 1.4rem;
   width: 56px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
 }
  
 .navbar__menu:hover {
@@ -58,7 +54,12 @@ body {
 }
  
 /* ── Main card ── */
-.main {
+main {
+  display: grid;
+  gap: 20px;
+}
+
+.card__container {
   display: flex;
   justify-content: center;
 }
@@ -66,7 +67,7 @@ body {
 .card {
   background-color: #f5f5f5;
   border: 3px solid #111;
-  padding: 48px 40px 48px 40px;
+  padding: 28px 28px 28px 28px;
   width: 100%;
   max-width: 1200px;
 }
@@ -77,10 +78,6 @@ body {
   font-size: 2rem;
   color: #111;
   margin-bottom: 24px;
-}
- 
-.wave {
-  display: inline-block;
 }
  
 .card__text {
