@@ -1,0 +1,45 @@
+.community-gallery {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 3px solid #111;
+}
+
+.gallery-title {
+  font-family: 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.gallery-wrapper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* Enables the horizontal scroll */
+  padding-bottom: 15px;
+  /* Adds a nice smooth feel to scrolling */
+  scroll-snap-type: x mandatory; 
+  scrollbar-width: thin;
+  scrollbar-color: #111 #f5f5f5;
+}
+
+.gallery-item {
+  flex: 0 0 300px; /* Each image stays 300px wide and doesn't shrink */
+  scroll-snap-align: start;
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 3 / 2; /* Keeps all photos the same size for a clean look */
+  object-fit: cover;
+  border: 2px solid #111;
+  display: block;
+}
+
+.gallery-caption {
+  display: block;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif; /* Using that more readable font! */
+  font-size: 0.8rem;
+  color: #555;
+}
