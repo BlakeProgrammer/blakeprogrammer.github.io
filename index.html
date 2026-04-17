@@ -33,7 +33,7 @@
         <h1 class="card__heading">About</h1>
         <p class="card__text">Hello!</p>
         <p class="card__text">I go by <b>Blake</b>, and I'm a passionate software developer. My expertise lies in working with Python and JavaScript, but I'm also proficent in C++, Java, and SQL.</p>
-        <p class="card__text">I'm a May 2026 graduate of Trevecca Nazarene University,<br>with a <b>Bachelor of Science in Computer Science</b>, and I'm excited to take what I've learned from my classes and my internship experience into the workforce.</p>
+        <p class="card__text">I'm a <u>May 2026 graduate of Trevecca Nazarene University</u>,<br>with a <b>Bachelor of Science in Computer Science</b>, and I'm excited to take what I've learned from my classes and my internship experience into the workforce.</p>
         <p class="card__text">You can find my full resume here: <a href="./documents/Benjamin Smith - Resume.pdf" target="_blank">Resume</a></p>
       </div>
       <div class="card__split" id="profile-picture">
@@ -47,9 +47,32 @@
     <section class="card__container">
       <div class="card" id="portfolio">
         <h1 class="card__heading">Portfolio</h1>
-        <p class="card__text">D&D Session Calendar App</p>
-        <p class="card__text"><a href="./portfolio/price-landscaper/main.html">Price Landscaper</a></p>
-        <p class="card__text">Airport Visualization</p>
+      <div class="card__grid">
+        <div class="card__grid__item" id="float-up-grid">
+          <div class="grid__image">
+            <img src="images/work-in-progress.png" alt="work in progress image">
+          </div>
+          <p class="grid__title">D&D Session Calendar App</p>
+        </div>
+        <a href="portfolio/price-landscaper/main.html">
+        <div class="card__grid__item" id="float-up-grid">
+          <div class="grid__image">
+            <img src="images/price-landscaper/DemoSmall.png" alt="Price Landscaper Demo">
+          </div>
+          <p class="grid__title">Price Landscaper</p>
+          <p class="grid__description">Developed during my Senior Seminar Class, this is a web application that provides users with price comparisons for real estate listings on Redfin across Tennessee.</p>
+        </div>
+        </a>
+        <div class="card__grid__item" id="float-up-grid">
+          <div class="grid__image">
+            <img src="images/work-in-progress.png" alt="work in progress image">
+          </div>
+          <p class="grid__title">Airport Visualization</p>
+        </div>
+        <div class="card__grid__item"">
+          <!-- room for a fourth item -->
+        </div>
+      </div>
       </div>
     </section>
 
