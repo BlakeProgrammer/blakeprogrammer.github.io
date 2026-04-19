@@ -37,7 +37,7 @@
         <a href="./showcase.html">Interactive Price Landscaper Demo</a>
         <img src="../../images/price-landscaper/Demo.png" alt="Price Landscaper Demo" class="card__image">
         <p class="card__text">The result is a tool that starts with the big picture and lets you drill down from a bird's eye view of an entire state's price landscape, through neighborhood level clusters, all the way to individual listings with photos, prices, and square footage, each linking directly to their Redfin page.</p>
-        <p class="card__text">View the source code on <a href="https://github.com/BlakeProgrammer/PriceLandscaper">GitHub</a>.</p>
+        <p class="card__text">View the source code on <a href="https://github.com/BlakeProgrammer/PriceLandscaper">GitHub</a>.</p> <br>
         <h1 class="card__heading">Technologies Used</h1>
         <h2 class="card__subheading">Python</h2>
         <p class="card__text"><b>Python</b> serves as the backbone of Price Landscaper's data pipeline. It orchestrates the entire scraping process from start to finish, handling everything from HTTP requests to statistical filtering of the final dataset, using a multitude of <b>modules</b> to do so.</p></li>
@@ -56,7 +56,10 @@
         <p class="card__text"><b>deck.gl</b> is an open source WebGL-powered geospatial visualization framework originally developed by Uber's engineering team. Rather than using the browser's standard 2D drawing APIs, deck.gl communicates directly with the computer's GPU through WebGL, enabling smooth rendering of thousands of 3D geographic objects in the browser. Price Landscaper uses two deck.gl layers - the HexagonLayer, which aggregates listings into a hexagonal grid and renders each hexagon as a 3D column whose height and color represent the average price of listings in that area, and the ScatterplotLayer, which renders individual listing coordinates as color-coded dots when the user zooms in. The crossfade transition between these two layers as the user zooms is driven by deck.gl's onViewStateChange event, which fires continuously as the camera moves.</p>
         <h2 class="card__subheading">MapLibre GL</h2>
         <p class="card__text"><b>MapLibre GL</b> is an open source map rendering library that provides the geographic base map underneath the deck.gl visualization. It renders the street map, city labels, and terrain context that gives the price columns their geographic meaning. Price Landscaper uses CartoDB's free dark basemap style, which provides a visually clean dark background that makes the colorful price columns stand out clearly.</p>
-        <br>
+        </div>
+        </section>
+        <section class="card__container">
+        <div class="card">
         <h1 class="card__heading">Further Possible Development</h1>
         <p class ="card__text">Since this was developed on a tight three week timeframe as a tech demo, there are several ways I could improve this and possibly incorporate it into already existing websites.
         <h2 class="card__subheading">Multi-Source Data Aggregation</h2>
