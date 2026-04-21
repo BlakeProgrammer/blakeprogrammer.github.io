@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Global Flight Pathfinding</title>
+    <script src="//unpkg.com/globe.gl"></script>
+    <script src="airport_engine.js"></script> 
+    <script src="search.js"></script>
+    <style>
+        body { margin: 0; background: #000; color: white; font-family: sans-serif; }
+        #ui-panel { position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(0,0,0,0.7); padding: 15px; border-radius: 8px; }
+        input { margin: 5px; padding: 5px; }
+        #globeViz { width: 100vw; height: 100vh; }
+    </style>
+</head>
+<body>
+
+    <div id="ui-panel">
+        <h3>Flight Route Finder</h3>
+        <input id="startInput" placeholder="Start (e.g. BNA)" maxlength="3">
+        <input id="endInput" placeholder="End (e.g. LHR)" maxlength="3">
+        <button onclick="findRoute()">Find Path</button>
+        <div id="status">Loading Graph...</div>
+    </div>
+
+    <div id="globeViz"></div>
+
+    <script>
+        // Initialize the Globe
+        // Update your world initialization
+        const world = Globe()
+            (document.getElementById('globeViz'))
+            .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+            .arcColor(() => 'rgba(255, 100, 0, 0.8)') // Brighter orange/red
+            .arcDashLength(1)
+            .arcDashGap(2)
+            // .arcDashAnimateTime(2000)
+            .arcStroke(0.5) // Give the line some thickness
+            .arcsTransitionDuration(0); // Make the new path appear instantly
+            world.arcLabel(d => d.label)
+            .pointLabel(d => d.label)
+            .pointColor(d => d.color)
+            .pointRadius(d => d.size);
+
+        let airportLookup = {};
+
+        // 1. Load your Airports.csv into JS for coordinates
+        // We do this in JS so the globe can "see" where the dots go
+        fetch('Airports.csv').then(res => res.text()).then(data => {
+            const lines = data.split('\n').slice(1);
+            lines.forEach(line => {
+                const cols = line.split(',');
+                if (cols.length > 7) {
+                    const iata = cols[4].trim(); // Adjusted based on your logic
+                    airportLookup[iata] = {
+                        lat: parseFloat(cols[6]),
+                        lng: parseFloat(cols[7]),
+                        name: cols[1]
+                    };
+                }
+            });
+            document.getElementById('status').innerText = "Airports Ready.";
+        });
+
+        // 2. Wait for WASM to be ready
+        Module.onRuntimeInitialized = () => {
+            Module._initGraph();
+            document.getElementById('status').innerText = "System Online.";
+        };
+
+        function findRoute() {
+          const start = document.getElementById('startInput').value.toUpperCase();
+          const end = document.getElementById('endInput').value.toUpperCase();
+
+          const rawResult = Module.ccall('findPath', 'string', ['string', 'string', 'number'], [start, end, 1]);
+          
+          if (!rawResult || rawResult.includes("empty") || rawResult === "") {
+              alert("No path found!");
+              return;
+          }
+
+          const pathData = rawResult.split('|')[0];
+          const iataCodes = pathData.split(':')[0].split('-');
+          
+          const arcsData = [];
+          const pointsData = []; // New array for markers
+
+          for (let i = 0; i < iataCodes.length; i++) {
+              const currentAir = airportLookup[iataCodes[i]];
+              
+              if (currentAir) {
+                  // Add to markers
+                  pointsData.push({
+                      lat: currentAir.lat,
+                      lng: currentAir.lng,
+                      size: 0.5,
+                      color: i === 0 ? 'green' : (i === iataCodes.length - 1 ? 'red' : 'white'),
+                      label: iataCodes[i]
+                  });
+
+                  // Add to arcs if not the last one
+                  if (i < iataCodes.length - 1) {
+                      const dst = airportLookup[iataCodes[i+1]];
+                      if (dst) {
+                          arcsData.push({
+                              startLat: currentAir.lat,
+                              startLng: currentAir.lng,
+                              endLat: dst.lat,
+                              endLng: dst.lng
+                          });
+                      }
+                  }
+              }
+          }
+
+          // This updates the globe with the new path and markers
+          world.arcsData(arcsData);
+          world.pointsData(pointsData); // Visualizes the airports in the path
+          
+          // Smooth transition to view the whole route
+          const firstAir = airportLookup[iataCodes[0]];
+          world.pointOfView({ lat: firstAir.lat, lng: firstAir.lng, altitude: 2 }, 1000);
+      }
+    </script>
+</body>
+</html>
