@@ -5,11 +5,14 @@
     <script src="//unpkg.com/globe.gl"></script>
     <script src="airport_engine.js"></script> 
     <script src="search.js"></script>
+    <link rel="stylesheet" href="showcase-styles.css">
     <style>
         body { margin: 0; background: #000; color: white; font-family: sans-serif; }
-        #ui-panel { position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(0,0,0,0.7); padding: 15px; border-radius: 8px; }
+        #ui-panel { position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(0, 0, 0, 0.7); padding: 15px; border-radius: 8px; }
         input { margin: 5px; padding: 5px; }
         #globeViz { width: 100vw; height: 100vh; }
+        a { position:absolute; top: 180px; left: -20px;  pointer-events: all; color: #9eb6b9; font-family: sans-serif; font-size: 14px; font-weight: bold; padding: 7px; background-color: aliceblue; color:#333; border: 2px solid #333; border-radius: 0 10px 10px 0;
+}
     </style>
 </head>
 <body>
@@ -19,7 +22,9 @@
         <input id="startInput" placeholder="Start (e.g. BNA)" maxlength="3">
         <input id="endInput" placeholder="End (e.g. LHR)" maxlength="3">
         <button onclick="findRoute()">Find Path</button>
+        <br><br>
         <div id="status">Loading Graph...</div>
+        <p><a href="main.html">Back</a></p>
     </div>
 
     <div id="globeViz"></div>
@@ -58,13 +63,13 @@
                     };
                 }
             });
-            document.getElementById('status').innerText = "Airports Ready.";
+            document.getElementById('status').innerText = "Status: Airports Ready.";
         });
 
         // 2. Wait for WASM to be ready
         Module.onRuntimeInitialized = () => {
             Module._initGraph();
-            document.getElementById('status').innerText = "System Online.";
+            document.getElementById('status').innerText = "Status: System Online.";
         };
 
         function findRoute() {
@@ -72,14 +77,19 @@
           const end = document.getElementById('endInput').value.toUpperCase();
 
           const rawResult = Module.ccall('findPath', 'string', ['string', 'string', 'number'], [start, end, 1]);
+          console.log("Raw result from WASM:", rawResult);
           
-          if (!rawResult || rawResult.includes("empty") || rawResult === "") {
-              alert("No path found!");
-              return;
-          }
-
           const pathData = rawResult.split('|')[0];
           const iataCodes = pathData.split(':')[0].split('-');
+          const totalDistance = pathData.split(':')[1];
+          
+          if (!rawResult || rawResult.includes("empty") || rawResult === "") {
+              document.getElementById('status').innerText = "Status: No path found!";
+              return;
+          }
+          else {
+              document.getElementById('status').innerText = "Status: Shortest path found \n Distance: " + totalDistance + " km";
+          }
           
           const arcsData = [];
           const pointsData = []; // New array for markers
