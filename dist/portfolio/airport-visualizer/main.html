@@ -31,13 +31,36 @@
     <section class="card__container">
       <div class="card">
         <h1 class="card__heading">Airport Visualizer</h1>
-        <p class="card__text">WIP - This project is currently a work in progress. Check back soon for updates!</p>
+        <p class="card__text">Initially, I created the C++ code for this program in my Advanced Data Structures class as a Junior to learn and apply Dijkstra's Algorithm as well as better understand object oriented programming. As a senior, I realized I could apply my passion for showcasing data to that program and created <b>Airport Visualizer</b>. This project serves as a bridge between high-performance computational logic and modern, interactive data visualization, proving that complex backend algorithms can be made accessible and engaging through thoughtful frontend design.</p>
         <a href="./showcase.html">Interactive Airport Visualizer Demo</a>
         <img src="../../images/airport-visualizer/Demo.png" alt="Airport Visualizer Demo" class="card__image">
+        <p class="card__text">
+        The interface features a high-resolution, interactive 3D globe that serves as the canvas for the pathfinding engine. When a user inputs a starting and ending airport code, the system doesn't just calculate a route; it visualizes the journey. Animated arcs spring to life across the globe, tracing the most efficient path calculated by the algorithm. Each node in the path is marked with distinct markers—green for the origin, white for layovers, and red for the final destination—allowing users to see exactly how the "shortest path" logic navigates through a global network of over 60,000 flight routes in real-time.</p>
         <p class="card__text">View the source code on <a href="https://github.com/BlakeProgrammer/AirportVisualizer">GitHub</a>.</p> <br>
         <h1 class="card__heading">Technologies Used</h1>
-        
+        <h2 class="card_subheading">C++ & Standard Template Library (STL)</h2>
+        <p class ="card__text">The "brain" of the application is written in C++. I utilized a custom-built Adjacency List data structure to represent the global flight network as a directed graph. The core logic implements Dijkstra's Algorithm to traverse thousands of nodes and edges, ensuring that the shortest path between any two airports is found with maximum efficiency.</p>
+        <h2 class="card_subheading">WebAssembly (Wasm) & Emscripten</h2>
+        <p class="card__text">To bring the C++ engine to the web, I used the Emscripten compiler toolchain. This allowed me to compile the C++ source code into WebAssembly, enabling near-native execution speeds within the browser. This technology is what makes the instant calculation of complex routes possible without requiring a traditional backend server.</p>
+        <h2 class="card_subheading">JavaScript & Globe.gl</h2>
+        <p class="card__text">The visual layer is powered by JavaScript and the Globe.gl library (built on Three.js). I developed a "bridge" to handle the communication between the WebAssembly memory and the browser's rendering engine. JavaScript parses the raw data returned from the C++ engine and maps it to geographic coordinates to render the 3D arcs and markers.</p>
+        <h2 class="card_subheading">Data Architecture (CSV & Virtual File Systems)</h2>
+        <p class="card__text">The project processes large-scale datasets including Airports.csv and WeightedRoutes.csv. I implemented a Virtual File System within the WebAssembly environment to "bake" these datasets into the application, ensuring that the data is always available to the engine for high-speed lookups and graph construction.</p>
+        <h2 class="card_subheading">HTML5 & CSS3</h2>
+        <p class="card__text">The user interface was designed with a focus on a "dark mode" aesthetic to complement the night-view globe. I used CSS for absolute-positioned UI overlays, ensuring that the flight search controls remain accessible while providing a cinematic, full-screen experience for the 3D visualization.</p>
+      </div>
     </section>
+    <section class="card__container">
+      <div class="card">
+        <h1 class="card__heading">Credits & Data Sources</h1>
+        <h2 class="card__subheading">Airport Geographic Data</h2>
+        <p class="card__text">The airport locations, IATA codes, and coordinate data were sourced from the Airports Dataset provided by Thoudam Yoihenba via Kaggle. This dataset provided the essential latitude and longitude mapping required to project 2D airport codes onto a 3D sphere.
+        <h2 class="card__subheading">Global Flight Routes</h2>
+        <p class="card__text">The network of flight paths and connections was derived from the Airports, Airlines, and Routes Update (2024) provided by Ahmad Rafiee. This updated dataset allowed the engine to process modern flight corridors and airline connectivity.</p>
+        <h2 class="card__subheading">Data Processing & Optimization</h2>
+        <p class="card__text">To integrate these datasets into a high-performance C++ environment, I performed extensive data cleaning and "weighting."
+        <p class="card__text">Distance Calculations: Using the Haversine formula, I calculated the great-circle distance between coordinates to create the "weights" for the graph edges.</p>
+        <p class="card__text">I filtered and merged raw CSV files to remove null entries and "noise" (such as \N markers), resulting in the optimized WeightedRoutes.csv used by the final engine.</p>
   </main>
   <footer>
     <div class="card" id="contact">
