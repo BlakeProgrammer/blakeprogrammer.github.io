@@ -341,3 +341,50 @@ footer {
     margin-bottom: 12px;
   }
 }
+
+/* Container for the three screens */
+.showcase__grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px; /* Small gap between items */
+  margin: 30px 0;
+  width: 100%;
+}
+
+/* Individual column for title + image */
+.showcase__item {
+  flex: 1; /* Makes all three take up equal width */
+  text-align: center;
+}
+
+/* The title text above each phone */
+.showcase__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text-color, #333); /* Fallback if variable isn't set */
+}
+
+/* The phone image itself */
+.showcase__image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px; /* Gives it that rounded phone look */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Adds some depth */
+  display: block;
+}
+
+/* Mobile Styling: Display one after the other */
+@media (max-width: 768px) {
+  .showcase__grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Larger gap for vertical scrolling */
+  }
+
+  .showcase__item {
+    width: 80%; /* Don't let it take full width on mobile so it looks like a phone */
+    max-width: 300px;
+  }
+}

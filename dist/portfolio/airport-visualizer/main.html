@@ -37,6 +37,7 @@
         <p class="card__text">
         The interface features a high-resolution, interactive 3D globe that serves as the canvas for the pathfinding engine. When a user inputs a starting and ending airport code, the system doesn't just calculate a route; it visualizes the journey. Animated arcs spring to life across the globe, tracing the most efficient path calculated by the algorithm. Each node in the path is marked with distinct markers—green for the origin, white for layovers, and red for the final destination—allowing users to see exactly how the "shortest path" logic navigates through a global network of over 60,000 flight routes in real-time.</p>
         <p class="card__text">View the source code on <a href="https://github.com/BlakeProgrammer/AirportVisualizer">GitHub</a>.</p> <br>
+        <hr>
         <h1 class="card__heading">Technologies Used</h1>
         <h2 class="card_subheading">C++ & Standard Template Library (STL)</h2>
         <p class ="card__text">The "brain" of the application is written in C++. I utilized a custom-built Adjacency List data structure to represent the global flight network as a directed graph. The core logic implements Dijkstra's Algorithm to traverse thousands of nodes and edges, ensuring that the shortest path between any two airports is found with maximum efficiency.</p>
